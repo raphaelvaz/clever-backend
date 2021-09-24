@@ -4,6 +4,7 @@ import { badRequest, successRequest } from "../helpers/httpHelper"
 import { Controller } from "../protocols/controller"
 import { FullNameValidator } from "../protocols/fullnameValidator"
 import { DateValidator } from "../protocols/dateValidator"
+import { InvalidParamError } from "../errors/invalidParamError"
 
 export default class SignUpController implements Controller {
     constructor(
@@ -25,17 +26,19 @@ export default class SignUpController implements Controller {
         const isValidUser = this.nameValidator.isValid(userName)
 
         if (!isValidUser) {
-            return badRequest(new Error('Invalid Param: User'))
+            return badRequest(new InvalidParamError('User'))
         }
         //TEM QUE SER UMA DATA DE NASCIMENTO VALIDA...
         const isValidDate = this.dateValidator.isValid(birthDate)
 
         if (!isValidDate) {
-            return badRequest(new Error('Invalid Param: Birth date'))
+            return badRequest(new InvalidParamError('Birth date'))
         }
 
         // /^[a-zA-Z'- ]+$/
         // /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/([12][0-9]{3})$/
+
+
 
 
         return successRequest({})
