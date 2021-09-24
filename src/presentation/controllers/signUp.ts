@@ -9,9 +9,9 @@ export default class SignUpController implements Controller {
         private readonly nameValidator: FullNameValidator,
     ) { }
     handle(httpRequest: HttpRequest): HttpResponse {
-        const { user, birthDate } = httpRequest.body
+        const { userName, birthDate } = httpRequest.body
 
-        if (!user) {
+        if (!userName) {
             return badRequest(new MissingParamError('user'))
         }
 
@@ -19,6 +19,11 @@ export default class SignUpController implements Controller {
             return badRequest(new MissingParamError('birth date'))
         }
         //VALIDAR SE É UMA STRING...
+        const isValidUser = this.nameValidator.isValid(userName)
+
+        if (!isValidUser) {
+            return badRequest(new Error('Invalid Param: User'))
+        }
         //TEM QUE SER UM NOME VALIDO...
         //TEM QUE SER UMA DATA DE NASCIMENTO VALIDA...
 
