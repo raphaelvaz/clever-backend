@@ -13,7 +13,7 @@ export default class AddAccountController implements Controller {
         private readonly dateValidator: DateValidator,
         private readonly addAccount: AddAccount,
     ) { }
-    handle(httpRequest: HttpRequest): HttpResponse {
+    async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
         const { userName, birthDate } = httpRequest.body
 
         if (!userName) {
@@ -37,11 +37,12 @@ export default class AddAccountController implements Controller {
             return badRequest(new InvalidParamError('Birth date'))
         }
 
-        const account = this.addAccount.add(httpRequest.body)
+        const account = await this.addAccount.add(httpRequest.body)
 
         // /^[a-zA-Z'- ]+$/
         // /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/([12][0-9]{3})$/
+        //FAZER TRY CATCH
 
-        return successRequest({})
+        return successRequest(account)
     }
 }
