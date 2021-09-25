@@ -6,7 +6,7 @@ import { FullNameValidator } from "../protocols/fullnameValidator"
 import { DateValidator } from "../protocols/dateValidator"
 import { InvalidParamError } from "../errors/invalidParamError"
 
-export default class SignUpController implements Controller {
+export default class AddAccountController implements Controller {
     constructor(
         private readonly nameValidator: FullNameValidator,
         private readonly dateValidator: DateValidator
@@ -37,9 +37,6 @@ export default class SignUpController implements Controller {
 
         // /^[a-zA-Z'- ]+$/
         // /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/([12][0-9]{3})$/
-
-
-
 
         return successRequest({})
     }
