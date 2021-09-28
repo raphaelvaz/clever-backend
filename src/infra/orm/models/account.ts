@@ -10,11 +10,11 @@ export class Account {
     name!: string;
 
     @Column()
-    birth_date!: Date;
+    birthDate!: Date;
 
     @CreateDateColumn()
-    created_at!: Date;
+    createdAt!: Date;
 
     @UpdateDateColumn()
-    updated_at!: Date;
+    updatedAt!: Date;
 }
