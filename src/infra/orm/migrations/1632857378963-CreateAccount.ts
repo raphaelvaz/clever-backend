@@ -17,16 +17,16 @@ export class CreateAccount1632857378963 implements MigrationInterface {
                     type: 'varchar',
                 },
                 {
-                    name: 'birth_date',
+                    name: 'birthDate',
                     type: 'timestamp',
                 },
                 {
-                    name: 'created_at',
+                    name: 'createdAt',
                     type: 'timestamp',
                     default: 'now()',
                 },
                 {
-                    name: 'updated_at',
+                    name: 'updatedAt',
                     type: 'timestamp',
                     default: 'now()',
                 }
