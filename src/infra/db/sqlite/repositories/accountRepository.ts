@@ -1,11 +1,13 @@
 import { Op } from 'sequelize'
+import { AccountRepository } from '../../../../data/protocols/AccountRepository';
+import { Account } from '../../../../domain/entities/account';
 import { AccountRequestData } from "../../../../domain/usecases/addAccount";
 import { Account as ORMAccount } from "../models/account";
 
 
 export class SqliteAccountRepository implements AccountRepository {
     async exists({ name, birthDate }: AccountRequestData): Promise<boolean> {
-        const rawDAta = await ORMAccount.findOne({
+        const rawData = await ORMAccount.findOne({
             where: {
                 [Op.and]: [
                     { name },
@@ -14,7 +16,15 @@ export class SqliteAccountRepository implements AccountRepository {
             }
         })
 
-        if (rawDAta) return true;
+        if (rawData) return true;
         return false;
+    }
+
+    async add({ name, birthDate }: AccountRequestData): Promise<Account> {
+        const rawData = await ORMAccount.create({ name, birthDate })
+
+        const account: Account = Object.assign({ ...rawData.toJSON() })
+
+        return account
     }
 }
