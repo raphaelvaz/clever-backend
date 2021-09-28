@@ -1,6 +1,6 @@
 
 export interface Account {
-    id: number
+    id: string
     name: string
     birhDate: Date
     createdAt: Date
