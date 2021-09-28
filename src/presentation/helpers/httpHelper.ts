@@ -13,3 +13,10 @@ export const successRequest = (data: any): HttpResponse => {
         body: data,
     }
 }
+
+export const serverError = (error: Error): HttpResponse => {
+    return {
+        statusCode: 500,
+        body: error.message,
+    }
+}
