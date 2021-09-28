@@ -19,6 +19,8 @@ export class DbAddAccount implements AddAccount {
             throw error;
         }
 
-        return {} as Account
+        const account = await this.accountRepository.add({ name, birthDate })
+
+        return account
     }
 }

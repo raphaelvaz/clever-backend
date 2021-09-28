@@ -4,4 +4,5 @@ import { AccountRequestData } from "../../domain/usecases/addAccount";
 
 export interface AccountRepository {
     exists: (accountData: AccountRequestData) => Promise<Boolean>
+    add: (accountData: AccountRequestData) => Promise<Account>
 }
