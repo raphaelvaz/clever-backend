@@ -51,7 +51,7 @@ export default class AddAccountController implements Controller {
             if ((err as Error).name === 'exists') {
                 return badRequest(new AlreadyExistsError())
             }
-            console.log(err);
+            console.log(err)
             return serverError(new ServerError())
         }
     }
