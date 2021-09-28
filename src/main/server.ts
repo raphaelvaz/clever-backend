@@ -1,6 +1,9 @@
+import 'reflect-metadata'
 import express from 'express'
 import cors from 'cors'
 import { routes } from './routes/routes'
+
+import '../infra/orm/connection'
 
 const app = express();
 
