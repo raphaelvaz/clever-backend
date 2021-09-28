@@ -2,7 +2,7 @@ module.exports = {
     "type": "postgres",
     "url": "postgres://postgres:1234@localhost:5433/clever",
     "entities": [
-        "src/infra/orm/entity/**/*.ts"
+        "src/infra/orm/models/**/*.ts"
     ],
     "migrations": [
         "src/infra/orm/migrations/**/*.ts"

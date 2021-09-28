@@ -17,18 +17,18 @@ export default class AddAccountController implements Controller {
     ) { }
     async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
         try {
-            const { userName, birthDate } = httpRequest.body
+            const { name, birthDate } = httpRequest.body
 
-            if (!userName) {
-                return badRequest(new MissingParamError('User'))
+            if (!name) {
+                return badRequest(new MissingParamError('name'))
             }
 
             if (!birthDate) {
-                return badRequest(new MissingParamError('Birth date'))
+                return badRequest(new MissingParamError('birthDate'))
             }
             //VALIDAR SE É UMA STRING...
             //TEM QUE SER UM NOME VALIDO...
-            const isValidUser = this.nameValidator.isValid(userName)
+            const isValidUser = this.nameValidator.isValid(name)
 
             if (!isValidUser) {
                 return badRequest(new InvalidParamError('User'))
@@ -37,7 +37,7 @@ export default class AddAccountController implements Controller {
             const isValidDate = this.dateValidator.isValid(birthDate)
 
             if (!isValidDate) {
-                return badRequest(new InvalidParamError('Birth date'))
+                return badRequest(new InvalidParamError('birthDate'))
             }
 
             const account = await this.addAccount.add(httpRequest.body)
@@ -51,6 +51,7 @@ export default class AddAccountController implements Controller {
             if ((err as Error).name === 'exists') {
                 return badRequest(new AlreadyExistsError())
             }
+            console.log(err);
             return serverError(new ServerError())
         }
     }
