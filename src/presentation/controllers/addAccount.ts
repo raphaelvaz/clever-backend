@@ -7,6 +7,7 @@ import { DateValidator } from "../protocols/dateValidator"
 import { InvalidParamError } from "../errors/invalidParamError"
 import { AddAccount } from "../../domain/usecases/addAccount"
 import { ServerError } from "../errors/serverError"
+import { AlreadyExistsError } from "../errors/alreadyExistsError"
 
 export default class AddAccountController implements Controller {
     constructor(
@@ -47,6 +48,9 @@ export default class AddAccountController implements Controller {
 
             return successRequest(account)
         } catch (err) {
+            if ((err as Error).name === 'exists') {
+                return badRequest(new AlreadyExistsError())
+            }
             return serverError(new ServerError())
         }
     }
