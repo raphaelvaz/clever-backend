@@ -2,10 +2,10 @@ import { Metric } from "../entities/metric";
 
 export interface RequestMetricData {
     account_id: string;
-    metrics: metric[];
+    metrics: MetricRequest[];
 }
 
-export interface metric {
+export interface MetricRequest {
     date: Date;
     bpm: number;
     pamin: number;
