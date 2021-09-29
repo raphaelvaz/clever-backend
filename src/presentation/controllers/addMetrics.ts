@@ -11,5 +11,7 @@ export default class AddMetricsController implements Controller {
         const { account_id, metrics } = httpRequest.body
 
         if (!account_id) return badRequest(new MissingParamError('account_id'))
+
+        if (!metrics) return badRequest(new MissingParamError('metrics'))
     }
 }
