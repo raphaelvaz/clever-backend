@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany, JoinColumn } from "typeorm";
 import { Metric } from "./metric";
 
 @Entity('accounts')
@@ -20,5 +20,6 @@ export class Account {
     updated_at!: Date;
 
     @OneToMany(() => Metric, metric => metric.account)
+    @JoinColumn({ name: 'account_id' })
     metrics!: Metric[];
 }

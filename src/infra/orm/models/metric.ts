@@ -18,6 +18,9 @@ export class Metric {
     @Column()
     pamax!: number;
 
+    @Column()
+    account_id!: string;
+
     @CreateDateColumn()
     created_at!: Date;
 
@@ -25,5 +28,6 @@ export class Metric {
     updated_at!: Date;
 
     @ManyToOne(() => Account, account => account.metrics)
+    @JoinColumn({ name: 'account_id' })
     account!: Account;
 }
