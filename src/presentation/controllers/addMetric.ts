@@ -34,7 +34,7 @@ export default class AddMetricsController implements Controller {
         if (metrics.length !== NUMBER_DAILY_MEASUREMENTS) return badRequest(new InvalidParamError('metrics'))
         //new Date("12/12/1996 07:05:45").toLocaleTimeString() === '07:05:45'
         metrics.forEach((metric: Metric) => {
-            if (!HOURS_AVAILABLE.includes(metric.date.toLocaleTimeString()))
+            if (!HOURS_AVAILABLE.includes(new Date(metric.date).toLocaleTimeString()))
                 return badRequest(new InvalidParamError('metric date'))
         })
         // TODO VALIDAR DADOS DE SAUDE...
