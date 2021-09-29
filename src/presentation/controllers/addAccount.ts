@@ -46,6 +46,8 @@ export default class AddAccountController implements Controller {
             // /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/([12][0-9]{3})$/
             //FAZER TRY CATCH
 
+            //TODO IF ACCOUNT ALREADY EXISTS RETURN
+
             return successRequest(account)
         } catch (err) {
             if ((err as Error).name === 'exists') {
