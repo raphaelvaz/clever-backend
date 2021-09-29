@@ -1,6 +1,11 @@
 import { Metric } from "../entities/metric";
 
-interface RequestMetricData {
+export interface RequestMetricData {
+    account_id: string;
+    metrics: metric[];
+}
+
+export interface metric {
     date: Date;
     bpm: number;
     pamin: number;
@@ -9,5 +14,5 @@ interface RequestMetricData {
 
 
 export interface AddMetrics {
-    add(metricData: RequestMetricData[]): Promise<Metric[]>
+    add(metricData: RequestMetricData): Promise<Metric[]>
 }

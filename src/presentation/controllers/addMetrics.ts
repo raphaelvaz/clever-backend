@@ -38,7 +38,7 @@ export default class AddMetricsController implements Controller {
                 return badRequest(new InvalidParamError('metric date'))
         })
         // TODO VALIDAR DADOS DE SAUDE...
-        const createdMetrics = await this.addMetrics.add(metrics);
+        const createdMetrics = await this.addMetrics.add({ account_id, metrics });
 
         return successRequest(createdMetrics);
     }
