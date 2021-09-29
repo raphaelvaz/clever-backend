@@ -2,7 +2,7 @@
 export interface Account {
     id: string
     name: string
-    birthDate: Date
-    createdAt: Date
-    updatedAt: Date
+    birth: Date
+    created_at: Date
+    updated_at: Date
 }
