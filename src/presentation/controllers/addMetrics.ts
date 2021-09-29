@@ -1,6 +1,7 @@
+import { AddMetrics } from "../../domain/usecases/addMetric";
 import { InvalidParamError } from "../errors/invalidParamError";
 import { MissingParamError } from "../errors/missingParamError";
-import { badRequest } from "../helpers/httpHelper";
+import { badRequest, successRequest } from "../helpers/httpHelper";
 import { Controller } from "../protocols/controller";
 import { HttpRequest, HttpResponse } from "../protocols/http";
 
@@ -20,7 +21,9 @@ const NUMBER_DAILY_MEASUREMENTS = 6;
 const HOURS_AVAILABLE = ['02:00:00', '06:00:00', '10:00:00', '14:00:00', '18:00:00', '22:00:00']
 
 export default class AddMetricsController implements Controller {
-    constructor() { }
+    constructor(
+        private readonly addMetrics: AddMetrics,
+    ) { }
     async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
         const { account_id, metrics } = httpRequest.body as HttpRequestBody
 
@@ -34,7 +37,9 @@ export default class AddMetricsController implements Controller {
             if (!HOURS_AVAILABLE.includes(metric.date.toLocaleTimeString()))
                 return badRequest(new InvalidParamError('metric date'))
         })
+        // TODO VALIDAR DADOS DE SAUDE...
+        const createdMetrics = await this.addMetrics.add(metrics);
 
-
+        return successRequest(createdMetrics);
     }
 }
