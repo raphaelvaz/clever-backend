@@ -32,6 +32,16 @@ export class CreateMetric1632936812078 implements MigrationInterface {
                 {
                     name: 'pamax',
                     type: 'integer',
+                },
+                {
+                    name: 'created_at',
+                    type: 'timestamp',
+                    default: 'now()',
+                },
+                {
+                    name: 'updated_at',
+                    type: 'timestamp',
+                    default: 'now()',
                 }
             ],
             foreignKeys: [
