@@ -8,9 +8,8 @@ export class TypeormAccountRepository implements AccountRepository {
     async exists({ name, birthDate }: AccountRequestData): Promise<boolean> {
         const accountRepository = getRepository(OrmAccount);
         const checkIfExists = await accountRepository.findOne({
-            where: [{ name }, { birthDate }],
+            where: { name, birth: new Date(birthDate) },
         })
-
         if (checkIfExists) return true;
         return false;
     }
@@ -18,7 +17,7 @@ export class TypeormAccountRepository implements AccountRepository {
     async add({ name, birthDate }: AccountRequestData): Promise<Account> {
         const accountRepository = getRepository(OrmAccount);
 
-        const account = accountRepository.create({ name, birthDate })
+        const account = accountRepository.create({ name, birth: birthDate })
 
         await accountRepository.save(account);
 
