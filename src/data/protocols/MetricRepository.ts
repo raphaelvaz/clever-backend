@@ -1,5 +1,8 @@
+import { Metric } from "../../domain/entities/metric";
+import { MetricRequest } from "../../domain/usecases/addMetric";
 
-export interface MetricsRepository {
-    exists: (accountData: AccountRequestData) => Promise<Boolean>
-    add: (accountData: AccountRequestData) => Promise<Account>
+type MetricData = MetricRequest & { account_id: string }
+
+export interface MetricRepository {
+    add: (metricData: MetricData) => Promise<Metric>
 }
