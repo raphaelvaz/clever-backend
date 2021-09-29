@@ -9,8 +9,10 @@ export const ExpressAdapter = (controller: Controller) => {
 
         const httpResponse = await controller.handle(httpRequest);
 
-        if (httpResponse.statusCode === 200)
+        if (httpResponse.statusCode === 200) {
             response.status(httpResponse.statusCode).json(httpResponse.body)
-        response.status(httpResponse.statusCode).json({ error: httpResponse.body.message })
+        } else {
+            response.status(httpResponse.statusCode).json({ error: httpResponse.body.message })
+        }
     }
 }
