@@ -10,13 +10,13 @@ export class Metric {
     date!: Date;
 
     @Column()
-    bpm!: Number;
+    bpm!: number;
 
     @Column()
-    pamin!: Number;
+    pamin!: number;
 
     @Column()
-    pamax!: Number;
+    pamax!: number;
 
     @CreateDateColumn()
     created_at!: Date;
