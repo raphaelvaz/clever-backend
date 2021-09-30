@@ -23,4 +23,13 @@ export class TypeormAccountRepository implements AccountRepository {
 
         return account
     }
+
+    async findById(id: string): Promise<boolean> {
+        const accountRepository = getRepository(OrmAccount);
+        const checkIfExists = await accountRepository.findOne({
+            where: { id },
+        })
+        if (checkIfExists) return true;
+        return false;
+    }
 }
