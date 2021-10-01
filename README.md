@@ -39,6 +39,8 @@ Acesse as rotas da api através do endereço:
 
 ## Rotas
 
+Rotas exportadas do Insomnia no arquivo: Insomnia_2021-09-30.
+
 | Função | Método | Caminho | Corpo da Request | 200 |
 | ------------------- | ------------------- | ------------------- | ------------------- | ------------------- |
 | Criar conta | POST | http://localhost:3000/signup | {"name":"eduardo costa","birthDate":"2000-11-11"} | {"id": "53df8119-bea8-419a-9b6f-d92b6365eda5","name": "eduardo costa","birth": "2000-11-10T02:00:00.000Z","created_at": "2021-09-30T02:29:05.768Z","updated_at": "2021-09-30T02:29:05.768Z" }
