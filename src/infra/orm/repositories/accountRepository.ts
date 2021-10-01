@@ -5,13 +5,13 @@ import { AccountRequestData } from "../../../domain/usecases/addAccount";
 import { Account as OrmAccount } from '../models/account'
 
 export class TypeormAccountRepository implements AccountRepository {
-    async exists({ name, birthDate }: AccountRequestData): Promise<boolean> {
+    async exists({ name, birthDate }: AccountRequestData): Promise<Account | undefined> {
         const accountRepository = getRepository(OrmAccount);
         const checkIfExists = await accountRepository.findOne({
             where: { name, birth: new Date(birthDate) },
         })
-        if (checkIfExists) return true;
-        return false;
+        if (checkIfExists) return checkIfExists;
+        return undefined;
     }
 
     async add({ name, birthDate }: AccountRequestData): Promise<Account> {

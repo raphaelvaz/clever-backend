@@ -14,9 +14,7 @@ export class DbAddAccount implements AddAccount {
         const accountExists = await this.accountRepository.exists({ name, birthDate })
 
         if (accountExists) {
-            const error = new Error()
-            error.name = 'exists'
-            throw error;
+            return accountExists;
         }
 
         const account = await this.accountRepository.add({ name, birthDate })
