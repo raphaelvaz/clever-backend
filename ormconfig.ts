@@ -1,6 +1,6 @@
 module.exports = {
     "type": "postgres",
-    "url": "postgres://postgres:1234@localhost:5433/clever",
+    "url": process.env.DATABASE_URL,
     "entities": [
         "src/infra/orm/models/**/*.ts"
     ],
